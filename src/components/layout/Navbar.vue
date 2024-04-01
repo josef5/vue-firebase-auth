@@ -8,6 +8,23 @@
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<style scoped>
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-<style scoped></style>
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    min-height: 3rem;
+
+    li {
+      list-style: none;
+    }
+  }
+}
+</style>
