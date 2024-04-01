@@ -1,9 +1,32 @@
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+import { useStoreAuth } from "../../stores/storeAuth";
+
+const storeAuth = useStoreAuth();
+const router = useRouter();
+
+const handleLogout = async () => {
+  await storeAuth.logout();
+
+  router.push("/");
+};
+</script>
+
 <template>
   <nav>
     <ul>
       <li><RouterLink to="/">Home</RouterLink></li>
       <li><RouterLink to="/admin">Admin</RouterLink></li>
-      <li><RouterLink to="/login">Login</RouterLink></li>
+      <template v-if="storeAuth.user.id">
+        <li>{{ storeAuth.user.email }}</li>
+        <li>
+          <button @click="handleLogout">Logout</button>
+        </li>
+      </template>
+      <template v-else>
+        <li><RouterLink to="/login">Login</RouterLink></li>
+        <!-- <li><RouterLink to="/register">Register</RouterLink></li> -->
+      </template>
     </ul>
   </nav>
 </template>
